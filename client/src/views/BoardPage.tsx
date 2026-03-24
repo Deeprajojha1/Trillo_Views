@@ -34,7 +34,7 @@ export function BoardPage() {
         view={state.view}
         onChange={(view) => dispatch({ type: 'setView', view })}
       />
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex items-center gap-3">
           <AvatarStack ids={state.activeUsers} />
           <span className="text-sm text-slate-600">{state.liveMessage}</span>

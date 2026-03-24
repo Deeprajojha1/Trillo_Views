@@ -120,7 +120,7 @@ export function KanbanView({ tasks }: { tasks: Task[] }) {
   }
 
   return (
-    <section className="grid grid-cols-1 gap-4 overflow-x-auto pb-2 md:grid-cols-2 xl:grid-cols-4">
+    <section className="grid grid-cols-1 gap-4 overflow-x-auto pb-2 sm:grid-cols-2 xl:grid-cols-4">
       {(Object.keys(STATUS_LABEL) as Status[]).map((status) => {
         const list = grouped[status]
         const isOver = over?.status === status

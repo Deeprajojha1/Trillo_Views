@@ -26,7 +26,7 @@ export function ListView({ tasks }: { tasks: Task[] }) {
   return (
     <section>
       <div className="overflow-hidden rounded-[18px] border border-black/10 bg-white">
-        <div className="grid grid-cols-[1.5fr_1fr_1fr] gap-3 bg-slate-100 px-4 py-3 font-semibold sm:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
+        <div className="grid grid-cols-[1.2fr_0.8fr_0.8fr] gap-3 bg-slate-100 px-4 py-3 text-sm font-semibold sm:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
           <button
             type="button"
             onClick={() =>
@@ -92,7 +92,7 @@ export function ListView({ tasks }: { tasks: Task[] }) {
             const assignee = USERS.find((user) => user.id === task.assigneeId)
             return (
               <div
-                className="grid grid-cols-[1.5fr_1fr_1fr] items-center gap-3 border-b border-black/5 px-4 sm:grid-cols-[2fr_1fr_1fr_1fr_1fr]"
+                className="grid grid-cols-[1.2fr_0.8fr_0.8fr] items-center gap-3 border-b border-black/5 px-4 sm:grid-cols-[2fr_1fr_1fr_1fr_1fr]"
                 key={task.id}
                 style={{ height: ROW_HEIGHT }}
               >

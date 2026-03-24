@@ -12,8 +12,8 @@ export function FilterBar({
   onClear: () => void
 }) {
   return (
-    <section className="flex flex-wrap items-end gap-4 rounded-2xl border border-black/10 bg-white p-4">
-      <div className="flex items-center gap-3">
+    <section className="flex flex-col gap-4 rounded-2xl border border-black/10 bg-white p-4 lg:flex-row lg:items-end">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <label className="flex flex-col gap-1.5 text-[13px] text-slate-500">
           Status
           <select
@@ -65,7 +65,7 @@ export function FilterBar({
           </select>
         </label>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <label className="flex flex-col gap-1.5 text-[13px] text-slate-500">
           From
           <input

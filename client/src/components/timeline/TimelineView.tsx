@@ -38,7 +38,7 @@ export function TimelineView({ tasks }: { tasks: Task[] }) {
           const width = Math.max((spanDays / totalDays) * 100, 1)
 
           return (
-            <div className="grid items-center gap-4 md:grid-cols-[240px_1fr]" key={task.id}>
+            <div className="grid items-center gap-4 lg:grid-cols-[240px_1fr]" key={task.id}>
               <div className="flex flex-col gap-1.5 font-semibold">
                 <span>{task.title}</span>
                 <Badge

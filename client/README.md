@@ -64,12 +64,3 @@ cd client
 npm run build
 ```
 
-**Notes**
-- Filters are stored in the URL (example: `?status=todo&priority=high`).
-- List view uses virtual scrolling for performance.
-- Timeline view shows a red “today” marker.
-
-**Next Ideas**
-- Add deployment config (Netlify/Vercel)
-- Convert styles to CSS Modules or Tailwind
-- Add keyboard drag and drop support

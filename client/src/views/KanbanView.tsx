@@ -120,13 +120,13 @@ export function KanbanView({ tasks }: { tasks: Task[] }) {
   }
 
   return (
-    <section className="kanban-view">
+    <section className="grid grid-cols-1 gap-4 overflow-x-auto pb-2 md:grid-cols-2 xl:grid-cols-4">
       {(Object.keys(STATUS_LABEL) as Status[]).map((status) => {
         const list = grouped[status]
         const isOver = over?.status === status
         return (
           <Column key={status} title={STATUS_LABEL[status]} count={list.length} isOver={isOver}>
-            <div className="column-drop" data-column={status}>
+            <div className="flex flex-col gap-3" data-column={status}>
               {list.length === 0 && (
                 <EmptyState title="No tasks" subtitle="Drag a card here." />
               )}
@@ -134,16 +134,20 @@ export function KanbanView({ tasks }: { tasks: Task[] }) {
                 const showPlaceholder =
                   drag && over?.status === status && over?.index === index
                 return (
-                  <div key={task.id} data-card data-index={index} className="card-wrap">
-                    {showPlaceholder && <div className="placeholder" />}
+                  <div key={task.id} data-card data-index={index} className="relative">
+                    {showPlaceholder && (
+                      <div className="mb-3 h-[70px] rounded-[16px] border-2 border-dashed border-blue-400/60 bg-blue-500/10" />
+                    )}
                     <div onPointerDown={(event) => onPointerDown(event, task.id)}>
-                      <Card task={task} />
+                      <div className="cursor-grab">
+                        <Card task={task} />
+                      </div>
                     </div>
                   </div>
                 )
               })}
               {drag && over?.status === status && over?.index === list.length && (
-                <div className="placeholder" />
+                <div className="mb-3 h-[70px] rounded-[16px] border-2 border-dashed border-blue-400/60 bg-blue-500/10" />
               )}
             </div>
           </Column>
@@ -152,7 +156,7 @@ export function KanbanView({ tasks }: { tasks: Task[] }) {
 
       {drag && (
         <div
-          className="drag-ghost"
+          className="pointer-events-none fixed left-0 top-0 z-50 opacity-90"
           style={{
             width: drag.width,
             height: drag.height,

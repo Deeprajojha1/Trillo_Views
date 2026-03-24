@@ -8,8 +8,8 @@ import { useTasks } from '../store/useTasks'
 import { applyFilters, getStatusSummary } from '../store/TaskStore'
 import { readFiltersFromUrl, useUrlFilters } from '../hooks/useUrlFilters'
 import { KanbanView } from './KanbanView'
-import { ListView } from './ListView'
-import { TimelineView } from './TimelineView'
+import { ListView } from '../components/list'
+import { TimelineView } from '../components/timeline'
 
 export function BoardPage() {
   const { state, dispatch } = useTasks()
@@ -29,20 +29,31 @@ export function BoardPage() {
   const summary = getStatusSummary(filtered)
 
   return (
-    <div className="board-page">
-      <TopNav view={state.view} onChange={(view) => dispatch({ type: 'setView', view })} />
-      <div className="meta-row">
-        <div>
+    <div className="flex flex-col gap-5">
+      <TopNav
+        view={state.view}
+        onChange={(view) => dispatch({ type: 'setView', view })}
+      />
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="flex items-center gap-3">
           <AvatarStack ids={state.activeUsers} />
-          <span className="live-text">{state.liveMessage}</span>
+          <span className="text-sm text-slate-600">{state.liveMessage}</span>
         </div>
-        <div className="summary">
-          <span>{summary.total} tasks</span>
-          <span className={summary.overdue ? 'danger' : ''}>
+        <div className="flex flex-wrap gap-3 font-semibold">
+          <span className="rounded-[10px] border border-black/10 bg-white px-2.5 py-1.5">
+            {summary.total} tasks
+          </span>
+          <span
+            className={`rounded-[10px] border border-black/10 bg-white px-2.5 py-1.5 ${
+              summary.overdue ? 'text-red-700' : ''
+            }`}
+          >
             {summary.overdue} overdue
           </span>
           {summary.overdueWeek > 0 && (
-            <span className="warning">{summary.overdueWeek} overdue 7+ days</span>
+            <span className="rounded-[10px] border border-black/10 bg-white px-2.5 py-1.5 text-amber-700">
+              {summary.overdueWeek} overdue 7+ days
+            </span>
           )}
         </div>
       </div>
@@ -70,6 +81,7 @@ export function BoardPage() {
     </div>
   )
 }
+
 
 
 

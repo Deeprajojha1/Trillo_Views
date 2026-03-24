@@ -17,17 +17,26 @@ export function Card({ task }: { task: Task }) {
   if (isOverdue) dueLabel = `Overdue by ${Math.abs(daysLeft)}d`
 
   return (
-    <article className={`card ${isOverdue ? 'overdue' : ''}`}>
-      <div className="card-title">{task.title}</div>
-      <div className="card-meta">
+    <article
+      className={`flex flex-col gap-2.5 rounded-[16px] border bg-slate-50 p-3.5 ${
+        isOverdue
+          ? 'border-red-400/60 shadow-[0_0_0_1px_rgba(239,68,68,0.2)]'
+          : 'border-black/10'
+      }`}
+    >
+      <div className="font-semibold">{task.title}</div>
+      <div className="flex items-center justify-between text-xs text-slate-500">
         <Badge
           label={task.priority}
           tone={task.priority === 'high' ? 'danger' : task.priority === 'medium' ? 'warning' : 'neutral'}
         />
-        <span className="due-date">{dueLabel}</span>
+        <span>{dueLabel}</span>
       </div>
-      <div className="card-footer">
-        <div className="avatar" style={{ backgroundColor: assignee?.color }}>
+      <div className="flex items-center gap-2 text-xs text-slate-600">
+        <div
+          className="flex h-7 w-7 items-center justify-center rounded-full text-[12px] font-semibold text-white"
+          style={{ backgroundColor: assignee?.color }}
+        >
           {assignee?.initials}
         </div>
         <span>{assignee?.name}</span>
